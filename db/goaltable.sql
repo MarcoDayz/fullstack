@@ -1,0 +1,3 @@
+DROP TABLE goals;
+
+CREATE TABLE goals()

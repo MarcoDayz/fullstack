@@ -13,7 +13,7 @@ const pool = new Pool({
     database:'goals_db'
 });
 
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
 app.use(express.json())
 
@@ -57,7 +57,7 @@ app.get('/goals/:id', async (req,res)=>{
 app.post('/goals', async (req,res)=>{
     try {
         const { first_name, last_name,goal_descr,complete } = req.body;
-        
+
         if(first_name && last_name && goal_descr && complete){
             await pool.query(`INSERT INTO goals(first_name,last_name,goal_descr,complete) VALUES($1,$2,$3,$4)`,[first_name,last_name,goal_descr,complete]);
         const {rows} = await pool.query(`SELECT * FROM goals`);

@@ -13,11 +13,48 @@ const port = 4000;
 //     database:'goals'
 // });
 
+//read all
 app.get('/', async (req,res)=>{
     try {
-        
+        res.send('server is connected')
     } catch (error) {
-        
+        console.error(error.message);
+    }
+});
+
+//read one
+app.get('/:id', async (req,res)=>{
+    try {
+        res.send('server is connected')
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+//create
+app.post('/', async (req,res)=>{
+    try {
+        res.send('server is connected')
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+//update 1
+app.put('/:id', async (req,res)=>{
+    try {
+        res.send('server is connected')
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+//get delete 1
+app.delete('/:id', async (req,res)=>{
+    try {
+        res.send('server is connected')
+    } catch (error) {
+        console.error(error.message);
     }
 });
 

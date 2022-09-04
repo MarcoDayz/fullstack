@@ -120,11 +120,11 @@ app.delete('/goals/:id', async (req,res)=>{
 //delete all
 app.delete('/goals', async (req,res)=>{
     try{
-        await pool.query(`DELETE FROM goals`);
+        const {rows} = await pool.query(`DELETE FROM goals`);
         // const {rows} = await pool.query(`select * from users`);
             res.status(200);
             res.contentType('application/json');
-            res.send('Table has been deleted');
+            res.send(rows);
     }catch(error){
             res.status(404);
             res.contentType('text/plain');

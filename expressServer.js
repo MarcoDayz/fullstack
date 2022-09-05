@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 const app = express();
 import pkg from "pg";
 const {Pool} = pkg;
@@ -34,7 +34,6 @@ app.get('/goals', async (req,res)=>{
 //read one goal
 app.get('/goals/:id', async (req,res)=>{
     try {
-  
         const { id } = req.params;
         const { rows } = await pool.query(`SELECT * FROM goals WHERE id = $1`,[id]);
         if(rows.length === 0){
@@ -56,19 +55,15 @@ app.get('/goals/:id', async (req,res)=>{
 //create new goal
 app.post('/goals', async (req,res)=>{
     try {
-        const { first_name, last_name,goal_descr,complete } = req.body;
+        const {first_name, goal_descr, last_name} = req.body;
 
-        if(first_name && last_name && goal_descr && complete){
-            await pool.query(`INSERT INTO goals(first_name,last_name,goal_descr,complete) VALUES($1,$2,$3,$4)`,[first_name,last_name,goal_descr,complete]);
-        const {rows} = await pool.query(`SELECT * FROM goals`);
+        if(first_name && last_name && goal_descr){
+            const result = await pool.query(`insert into goals (first_name, goal_descr,last_name) values($1,$2,$3)`,[first_name,goal_descr,last_name]);
+            // const {rows} = await pool.query(`select * from goals`);
             res.status(200);
             res.contentType('application/json');
-            res.send(rows);
-        }else{
-            res.status(404);
-            res.contentType('text/plain');
-            res.send('page not found');
-        }
+            res.send(result);
+            }
     } catch (error) {
             res.status(404);
             res.contentType('text/plain');
@@ -78,27 +73,34 @@ app.post('/goals', async (req,res)=>{
 
 //update 1 goal
 app.put('/goals/:id', async (req,res)=>{
-    try {
-        const { id } = req.params;
-        const { first_name,last_name,goal_descr,complete } = req.body;
+    try{
+        const {id} = req.params;
+        const {first_name, last_name, goal_descr} = req.body;
 
-        if(rows.leng === 0){
-            res.status(404);
+            if(!first_name || !last_name || !goal_descr){
+                if(first_name){
+                await pool.query(`Update goals SET first_name = $1 WHERE id = $2`, [first_name,id]);
+                }
+                if(last_name){
+                await pool.query(`Update goals SET last_name = $1 WHERE id = $2`, [last_name,id]);
+                }
+                if(goal_descr){
+                await pool.query(`Update goals SET goal_descr = $1 WHERE id = $2`, [goal_descr,id]);
+                }
+            }else if(first_name,last_name,goal_descr){
+                    await pool.query(`Update goals SET first_name = $1, last_name = $2, goal_descr = $3 WHERE id = $4`, [first_name,last_name,goal_descr,id]);
+            }else{
+                res.status(404);
                 res.contentType('text/plain');
                 res.send('page not found');
-        }else{
-        const { rows } = await pool.query(`UPDATE goals SET first_name = $1, last_name = $2, goal_descr = $3, complete = $4 WHERE id = $5`, [first_name,last_name,goal_descr,complete,id]);
+                }
+            const {rows} = await pool.query(`select * from goals`);
             res.status(200);
             res.contentType('application/json');
             res.send(rows);
+        }catch(error){
+            console.error(error.message);
         }
-    } catch (error) {
-            res.status(404);
-            res.contentType('text/plain');
-            res.send('page not found');
-    }
-
-
 });
 
 //get delete 1
@@ -106,10 +108,9 @@ app.delete('/goals/:id', async (req,res)=>{
     try {
         const { id } = req.params;
          await pool.query(`DELETE FROM goals WHERE id = $1`,[id]);
-        const {rows} = await pool.query(`SELECT * ALL goals`);
             res.status(200);
             res.contentType('application/json');
-            res.send(rows);
+            console.log(`${id} was deleted`)
     } catch (error) {
             res.status(404);
             res.contentType('text/plain');

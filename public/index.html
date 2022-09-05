@@ -6,51 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./main.css">
     <link href="https://fonts.googleapis.com/css2?family=Kavoon&display=swap" rel="stylesheet"> 
-    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+    <title>GoalList</title>
 </head>
 <body>
     <nav class="navbar">
-        <h1>GOAL <span id='highlight'>TRACKER</span></h1>
+        <h1>GOAL<span id='highlight'>LIST</span></h1>
         <h2 class="about">ABOUT</h2>
     </nav>
-
-    <div class="smartContainer">
-        <div class="smart">
-            <h1 class="smartItem1">S</h1>
-            <p class="smartItem2"><span class="smartLetter">Specific:</span> <br><br> Well defined, clear, and unambiguous.
-            </p>
-        </div>
-        <div class="smart">
-            <h1 class="smartItem1">M</h1>
-            <p class="smartItem2"><span class="smartLetter">Measurable:</span> <br><br> With specific criteria that measure your progress toward the accomplishment of the goal.</p>
-        </div>
-        <div class="smart">
-            <h1 class="smartItem1">A</h1>
-            <p class="smartItem2"><span class="smartLetter">Achievable:</span> <br><br> Attainable and not impossible to achieve</p>
-        </div>
-        <div class="smart">
-            <h1 class="smartItem1">R</h1>
-            <p class="smartItem2"><span class="smartLetter">Realistic:</span> <br><br> Within reach, realistic, and relevant to your life purpose</p>
-        </div>
-        <div class="smart">
-            <h1 class="smartItem1">T</h1>
-            <p class="smartItem2"><span class="smartLetter">Timely:</span> <br><br> With a clearly defined timeline, including a starting date and a target date. The purpose is to create urgency.</p>
-        </div>
-
-    </div>
-
     <div class="servContainer">
         <div class="servItem1">
             <div class="item1Header">Why set a goal?</div>
-            <div>Simply setting goals just isn’t enough. You need a structured approach to creating, tracking, and completing these goals. This is why using a goal tracking application is crucial to the success of achieving your goals.</div>
-        </div>
-        <div class="servItem2">
-            <div class="item2Header">Try me</div>
+            <div>Simply setting goals just isn’t enough. You need a structured approach to creating, tracking, and completing these goals. This is why using a goal tracking application is crucial to the success of achieving your goals.
+            </div>
         </div>
     </div>
-    <div class="getbtn" hidden="false">get request....</div>
-    <div class="deletebtn" hidden="false">delete request....</div>
-    <div class="postbtn" hidden="false">post request....</div>
+    <div class="mainContainer">
+        <div class="smartContainer">
+            <div class="smart">
+                <h1 class="smartItem1">S</h1>
+                <p class="smartItem2"><span class="smartLetter">Specific:</span> <br><br> Well defined, clear, and unambiguous.
+                </p>
+            </div>
+            <div class="smart">
+                <h1 class="smartItem1">M</h1>
+                <p class="smartItem2"><span class="smartLetter">Measurable:</span> <br><br> With specific criteria that measure your progress toward the accomplishment of the goal.</p>
+            </div>
+            <div class="smart">
+                <h1 class="smartItem1">A</h1>
+                <p class="smartItem2"><span class="smartLetter">Achievable:</span> <br><br> Attainable and not impossible to achieve.</p>
+            </div>
+            <div class="smart">
+                <h1 class="smartItem1">R</h1>
+                <p class="smartItem2"><span class="smartLetter">Realistic:</span> <br><br> Within reach, realistic, and relevant to your life purpose.</p>
+            </div>   
+            <div class="smart">
+                <h1 class="smartItem1">T</h1>
+                <p class="smartItem2"><span class="smartLetter">Timely:</span> <br><br> With a clearly defined timeline, including a starting date and a target date. The purpose is to create urgency.</p>
+            </div>
+        </div>
+             <div class="userMainContainer">This is user container
+                <div class="userInput">
+                    <div class="nameForm" >
+                        <label>First Name
+                            <input class="first_name" type="text">
+                        </label>
+                        <label>Last Name
+                            <input class="last_name" type="text">
+                        </label>
+                    </div>
+                    <div class="goalForm">
+                        <label>type in goal
+                            <input class="goal_descr" type="text">
+                            <button class="goalpostbtn" type="submit">post goal</button>
+                        </label>
+                    </div>
+                </div>
+                <ul class="usergoals"> This is user goals container</ul>
+             </div>
+    </div>
+
     <script src="./main.js"></script>
 </body>
 </html>

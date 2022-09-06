@@ -1,5 +1,5 @@
 
-const goallist = document.createElement('il');
+const goallist = document.createElement('div');
 
 // to get input from submit
 const first_name = document.querySelector('.first_name');
@@ -8,7 +8,9 @@ const goal_descr = document.querySelector('.goal_descr');
 
 const goalpostbtn = document.querySelector('.goalpostbtn')
 
+createPost()
 
+async function createPost(){
 goalpostbtn.addEventListener('click', async () => {
     
     let newPost = {
@@ -27,16 +29,17 @@ goalpostbtn.addEventListener('click', async () => {
     const json = await data.json();
 
     if(Response.ok = true){
+        $('.nameContainer').hide();
         goal_descr.value = "";
-        $('il').remove()
+        $('.goalItem').remove()
         fetchPosts();
     }else if(!first_name.value || !last_name.value || !goal_descr.value === Number){
         first_name.value,last_name.value, goal_descr.value = String;
     } else if(!first_name.value || !last_name.value || !goal_descr.value === ""){
         alert('You need all fields filled')
     }
-
 });
+}
 
 async function fetchPosts(){
     const usergoalDiv = document.querySelector('.usergoals')
@@ -46,8 +49,9 @@ async function fetchPosts(){
     for(let i = 0; i < goalData.length; i++){
         let data = goalData[i].goal_descr;
         let id = goalData[i].id;
-            const goallist = document.createElement('il');
+            const goallist = document.createElement('div');
             goallist.id = id;
+            goallist.className = "goalItem"
             goallist.textContent = data;
             const deletebtn = document.createElement('button');
             deletebtn.innerText = "delete"
@@ -72,7 +76,6 @@ async function deleteGoal (goallist,deletebtn,id) {
         }
         await fetch(`http://localhost:4000/goals/${id}`, sendPost);
 //    await data.json();
-
         fetchPosts()
     });
 }

@@ -77,17 +77,31 @@
 }
 
 .userMainContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     height: 30rem;
     background: rgba(190, 112, 246, 0.881);
     border-radius: 1rem;
 }
 
 .userInput{
+    display: flex;
+    flex-direction: column;
     border: solid black 1px;
     overflow: hidden;
 }
 
 .usergoals{
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
     border: solid black 1px;
+    height: 20rem;
     overflow: hidden;
+}
+
+.goalItem{
+    border: solid black 1px;
 }

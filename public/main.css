@@ -29,7 +29,7 @@
 
 .servContainer{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 5rem;
     padding: 0.5rem;
     background-image: linear-gradient(rgb(190, 112, 246),rgba(112, 67, 144, 0));
@@ -37,6 +37,7 @@
 
 .servItem1,.servItem2{
     padding: 0.5rem;
+    width: 60rem;
 }
 
 .item1Header{
@@ -168,5 +169,30 @@
 
 .goalinputContainer{
     width: 30rem;
+}
+
+.footerContainer{
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    padding: 0.5rem;
+    background-image: linear-gradient(rgba(112, 67, 144, 0),rgb(190, 112, 246));
+}
+
+.footer{
+    display: flex;
+    width: 70rem;
+    padding: 0.5rem;
+    justify-content: space-evenly;
+}
+
+.footerTitle{
+    font-family: 'Kavoon';
+    font-size: 1rem;
+}
+
+.footerItem{
+    text-align: center;
+    width: 20rem;
 }
 

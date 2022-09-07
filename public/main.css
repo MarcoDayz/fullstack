@@ -83,7 +83,7 @@
     Display: flex;
     text-align: center;
     height: 30rem;
-    background: rgba(212, 169, 245, 0.926);
+    background: rgb(212 169 245 / 96%);
     border-radius: 1rem;
     flex-direction: column;
     align-items: center;
@@ -119,6 +119,7 @@
     justify-content: flex-start;
     align-items: center;
     border: solid black 1px;
+    border-radius: 1rem;
     width: 40rem;
     height: 18rem;
     overflow: overlay;
@@ -175,6 +176,7 @@
     display: flex;
     justify-content: center;
     gap: 5rem;
+    height: 8rem;
     padding: 0.5rem;
     background-image: linear-gradient(rgba(112, 67, 144, 0),rgb(190, 112, 246));
 }

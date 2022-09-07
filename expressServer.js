@@ -63,10 +63,6 @@ app.post('/goals', async (req,res)=>{
             res.status(200);
             res.contentType('application/json');
             res.send(rows);
-            }else{
-                res.status(404);
-                res.contentType('text/plain');
-                res.send('"page not found"');
             }
     } catch (error) {
             res.status(404);

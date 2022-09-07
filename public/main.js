@@ -1,6 +1,6 @@
 
 const goallist = document.createElement('div');
-const usergoalDiv = document.querySelector('.usergoals')
+const usergoalDiv = document.querySelector('.usergoals');
 
 // to get input from submit
 const first_name = document.querySelector('#first_name');
@@ -13,7 +13,12 @@ createPost()
 //CREATE POST
 async function createPost(){
 goalpostbtn.addEventListener('click', async () => {
-    
+
+        if(!first_name.value || !last_name.value || !goal_descr.value === ""){
+            alert('You need all fields filled');
+            return;
+        }
+
     let newPost = {
         first_name: first_name.value,
         last_name: last_name.value,
@@ -28,28 +33,20 @@ goalpostbtn.addEventListener('click', async () => {
     }
     const data = await fetch('http://localhost:4000/goals', sendPost);
     const postResponse = await data.json();
-    console.log(postResponse);
 
     if(Response.ok = true){
         $('.nameContainer').hide();
         goal_descr.value = "";
-        // const newPost = document.createElement('div').className = 'newPost'
-        // newPost.textContent = postResponse[0].goal_descr;
-        // goallist.append(newPost);
-        // usergoalDiv.appendChild(goallist);
         $('.goalItem').remove()
         fetchPosts();
-    }else if(!first_name.value || !last_name.value || !goal_descr.value === Number){
-        first_name.value,last_name.value, goal_descr.value = String;
-    } else if(!first_name.value || !last_name.value || !goal_descr.value === ""){
-        alert('You need all fields filled')
+        console.log(postResponse);
     }
 });
 }
 
 //USE GET METHOD
 async function fetchPosts(){
-    const usergoalDiv = document.querySelector('.usergoals')
+    // const usergoalDiv = document.querySelector('.usergoals')
     const data = await fetch(`http://localhost:4000/goals`)
     const goalData = await data.json();
 
@@ -95,11 +92,11 @@ async function fetchPosts(){
 async function deleteGoal (deletebtn,id) {
     deletebtn.addEventListener('click', async () => {
     
-        $(`#goal${id}`).remove();
+    $(`#goal${id}`).remove();
         let sendPost = {
             method: 'DELETE',
             headers: {
-                'Content-Type':'application/json'
+            'Content-Type':'application/json'
             }
         }
        const dataresult =  await fetch(`http://localhost:4000/goals/${id}`, sendPost);
@@ -108,31 +105,24 @@ async function deleteGoal (deletebtn,id) {
     });
 }
 
-
  async function editBtn(goallist,editbtn,id){
 
-            editbtn.addEventListener('click', ()=>{
-                const editInput = document.createElement('input');
-                editInput.id = `editInput${id}`;
-                editInput.className = 'editInput';
+    editbtn.addEventListener('click', ()=>{
+        const editInput = document.createElement('input');
+            editInput.id = `editInput${id}`;
+            editInput.className = 'editInput';
 
-                $(goallist).prepend(editInput);
-                $(`#editbtn${id}`).hide();
-                $(`#updatebtn${id}`).show();
+            $(goallist).prepend(editInput);
+            $(`#editbtn${id}`).hide();
+            $(`#updatebtn${id}`).show();
                 
-                
-                const goaltextvalue = document.querySelector(`#goaltext${id}`);
-                const editInputvalue = document.querySelector(`#editInput${id}`);
-                editInputvalue.value = goaltextvalue.textContent;
+            const goaltextvalue = document.querySelector(`#goaltext${id}`);
+            const editInputvalue = document.querySelector(`#editInput${id}`);
+            editInputvalue.value = goaltextvalue.textContent;
 
-                // $(goaltextvalue).hide();
-
-                if(goaltextvalue.textContent = ""){
-                    alert('Please type in a goal');
-                }
-                // console.log(editInputvalue.value)
-                // console.log(goaltextvalue.textContent)
-                    // $(`#editInput${id}`).show();
+            if(goaltextvalue.textContent = ""){
+                alert('Please type in a goal');
+            }
                     
     });
 }
@@ -149,8 +139,6 @@ async function updateButton(updatebtn,id,editbtn){
         $(newGoal).show();
         $(editbtn).show();
         $(newValue).hide();
-
-        console.log(newGoal.textContent)
 
         let updatePost = {
             goal_descr: newGoal.textContent

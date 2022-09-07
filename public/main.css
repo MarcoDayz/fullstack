@@ -18,12 +18,13 @@
 
 .mainContainer{
     display: flex;
-    flex-direction: column;
-    background-image: url("./Smart-goal.png");
-    background-repeat: no-repeat, repeat;
-    background-position: center;
+    background-image: url(./Smart-goal.png);
+    background-repeat: no-repeat;
+    background-position: top;
     height: 40rem;
     padding: 0.5rem;
+    align-items: center;
+    flex-direction: column;
 }
 
 .servContainer{
@@ -49,6 +50,7 @@
     display: flex;
     justify-content: space-between;
     height: 15rem;
+    width: 50rem;
 }
 
 .smart{
@@ -77,31 +79,94 @@
 }
 
 .userMainContainer{
-    display: flex;
-    flex-direction: column;
+    Display: flex;
     text-align: center;
     height: 30rem;
-    background: rgba(190, 112, 246, 0.881);
+    background: rgba(212, 169, 245, 0.926);
     border-radius: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60rem;
 }
 
 .userInput{
     display: flex;
     flex-direction: column;
-    border: solid black 1px;
+    justify-content: center;
     overflow: hidden;
+}
+
+.nameContainer{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.goalForm{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.5rem
 }
 
 .usergoals{
     font-size: large;
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
     border: solid black 1px;
-    height: 20rem;
-    overflow: hidden;
+    width: 40rem;
+    height: 18rem;
+    overflow: overlay;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb{
+    background: rgb(117 244 255);
+    border-radius: 10px;
+  }
+
 .goalItem{
+    display: flex;
+    flex-wrap: wrap;
     border: solid black 1px;
+    margin: 5px;
+    width: 30rem;
+    align-items: center;
+    justify-content: flex-end;
+    overflow-wrap: anywhere;
 }
+
+.editbtn{
+    margin-inline-start: 2rem;
+}
+
+.deletebtn{
+    margin-inline-start: 2rem;
+}
+
+.updatebtn{
+    margin-inline-start: 2rem;
+}
+
+.userinputContainers{
+    width: 15rem;
+}
+
+.goalinputContainer{
+    width: 30rem;
+}
+

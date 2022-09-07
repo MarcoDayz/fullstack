@@ -20,14 +20,14 @@ app.use(express.json())
 //read all goals
 app.get('/goals', async (req,res)=>{
     try {
-        const { rows } = await pool.query(`SELECT * FROM goals`);
+        const { rows } = await pool.query(`SELECT * FROM goals ORDER BY id ASC`);
             res.status(200);
             res.contentType('application/json');
             res.send(rows);
     } catch (error) {
             res.status(404);
             res.contentType('text/plain');
-            res.send('page not found');
+            res.send('"page not found"');
     }
 });
 
@@ -39,7 +39,7 @@ app.get('/goals/:id', async (req,res)=>{
         if(rows.length === 0){
             res.status(404);
             res.contentType('text/plain');
-            res.send('page not found');
+            res.send('"page not found"');
         }else{
             res.status(200);
             res.contentType('application/json');
@@ -48,7 +48,7 @@ app.get('/goals/:id', async (req,res)=>{
     } catch (error) {
             res.status(404);
             res.contentType('text/plain');
-            res.send('page not found');
+            res.send('"page not found"');
     }
 });
 
@@ -58,20 +58,20 @@ app.post('/goals', async (req,res)=>{
         const {first_name, goal_descr, last_name} = req.body;
 
         if(first_name && last_name && goal_descr){
-            const result = await pool.query(`insert into goals (first_name,goal_descr,last_name) values($1,$2,$3)`,[first_name,goal_descr,last_name]);
+           const {rows} =  await pool.query(`insert into goals (first_name,goal_descr,last_name) values($1,$2,$3) RETURNING *`,[first_name,goal_descr,last_name]);
             // const {rows} = await pool.query(`select * from goals`);
             res.status(200);
             res.contentType('application/json');
-            res.send(result);
+            res.send(rows);
             }else{
                 res.status(404);
                 res.contentType('text/plain');
-                res.send('page not found');
+                res.send('"page not found"');
             }
     } catch (error) {
             res.status(404);
             res.contentType('text/plain');
-            res.send('page not found');
+            res.send('"page not found"');
     }
 });
 
@@ -96,12 +96,11 @@ app.put('/goals/:id', async (req,res)=>{
             }else{
                 res.status(404);
                 res.contentType('text/plain');
-                res.send('page not found');
+                res.send('"page not found"');
                 }
-            const {rows} = await pool.query(`select * from goals`);
             res.status(200);
             res.contentType('application/json');
-            res.send(rows);
+            res.send(`"ID: ${id} was updated"`);
         }catch(error){
             console.error(error.message);
         }
@@ -111,14 +110,14 @@ app.put('/goals/:id', async (req,res)=>{
 app.delete('/goals/:id', async (req,res)=>{
     try {
         const { id } = req.params;
-         await pool.query(`DELETE FROM goals WHERE id = $1`,[id]);
-            // res.status(200);
-            // res.contentType('application/json');
-            // res.send(`${id} was deleted`)
+        await pool.query(`DELETE FROM goals WHERE id = $1`,[id]);
+            res.status(200);
+            res.contentType('application/json');
+            res.send(`"Deleted id: ${id}"`)
     } catch (error) {
             res.status(404);
             res.contentType('text/plain');
-            res.send('page not found');
+            res.send('"page not found"');
     }
 });
 
@@ -133,7 +132,7 @@ app.delete('/goals', async (req,res)=>{
     }catch(error){
             res.status(404);
             res.contentType('text/plain');
-            res.send('page not found');
+            res.send('"page not found"');
     }
 });
 

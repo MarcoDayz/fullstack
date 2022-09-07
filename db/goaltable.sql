@@ -7,4 +7,4 @@ CREATE TABLE goals(
     goal_descr text
 );
 
-INSERT INTO goals(first_name,last_name,goal_descr) VALUES('marco','diaz','Graduate MCSP-14');
+-- INSERT INTO goals(first_name,last_name,goal_descr) VALUES('marco','diaz','Graduate MCSP-14');

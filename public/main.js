@@ -1,11 +1,8 @@
-
-const goallist = document.createElement('div');
 const usergoalDiv = document.querySelector('.usergoals');
 
-// to get input from submit
-const first_name = document.querySelector('#first_name');
-const last_name = document.querySelector('#last_name');
-const goal_descr = document.querySelector('#goal_descr');
+const firstname = document.querySelector('#first_name');
+const lastname = document.querySelector('#last_name');
+const goaldescr = document.querySelector('#goal_descr');
 const goalpostbtn = document.querySelector('.goalpostbtn')
 
 createPost()
@@ -14,15 +11,15 @@ createPost()
 async function createPost(){
 goalpostbtn.addEventListener('click', async () => {
 
-        if(!first_name.value || !last_name.value || !goal_descr.value === ""){
-            alert('You need all fields filled');
+    if(!firstname.value || !lastname.value || !goaldescr.value === ""){
+        alert('Please type in all fields');
             return;
         }
 
     let newPost = {
-        first_name: first_name.value,
-        last_name: last_name.value,
-        goal_descr: goal_descr.value
+        first_name: firstname.value,
+        last_name: lastname.value,
+        goal_descr: goaldescr.value
     };
         let sendPost = {
         method: 'POST',
@@ -34,9 +31,10 @@ goalpostbtn.addEventListener('click', async () => {
     const data = await fetch('http://localhost:4000/goals', sendPost);
     const postResponse = await data.json();
 
+    //if resonse.ok is true then continue to fetch
     if(Response.ok = true){
         $('.nameContainer').hide();
-        goal_descr.value = "";
+        goaldescr.value = "";
         $('.goalItem').remove()
         fetchPosts();
         console.log(postResponse);
@@ -80,16 +78,17 @@ async function fetchPosts(){
         goallist.appendChild(deletebtn);
         usergoalDiv.appendChild(goallist);
 
-        
-        editBtn(goallist,editbtn,id);
-        deleteGoal(deletebtn,id);
-        updateButton(updatebtn,id,editbtn)
         $('.updatebtn').hide();
+        editBtn(goallist,editbtn,id);
+        deleteBtn(deletebtn,id);
+        //call update
+        updateBtn(updatebtn,id,editbtn);
+       
     }
 }
 
 //USE DELETE METHOD
-async function deleteGoal (deletebtn,id) {
+async function deleteBtn(deletebtn,id) {
     deletebtn.addEventListener('click', async () => {
     
     $(`#goal${id}`).remove();
@@ -105,8 +104,7 @@ async function deleteGoal (deletebtn,id) {
     });
 }
 
- async function editBtn(goallist,editbtn,id){
-
+function editBtn(goallist,editbtn,id){
     editbtn.addEventListener('click', ()=>{
         const editInput = document.createElement('input');
             editInput.id = `editInput${id}`;
@@ -120,15 +118,12 @@ async function deleteGoal (deletebtn,id) {
             const editInputvalue = document.querySelector(`#editInput${id}`);
             editInputvalue.value = goaltextvalue.textContent;
 
-            if(goaltextvalue.textContent = ""){
-                alert('Please type in a goal');
-            }
-                    
+            goaltextvalue.textContent = ""
     });
 }
 
-async function updateButton(updatebtn,id,editbtn){
-
+//PUT METHOD
+async function updateBtn(updatebtn,id,editbtn){
     updatebtn.addEventListener('click', async ()=>{
         $(`#updatebtn${id}`).hide();
         const newValue = document.querySelector(`#editInput${id}`);

@@ -3,7 +3,7 @@
 }
 
 .navbar{
-    font-family: 'Kavoon';
+    
     display: flex;
     justify-content: space-between;
     border-bottom: solid rgb(117, 244, 255);
@@ -11,9 +11,22 @@
     background-image: linear-gradient(rgb(112, 67, 144),rgb(190, 112, 246));
 }
 
+.headerTitle{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.home{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.home:hover{
+    cursor: pointer;
+}
+
 #highlight{
     color: rgb(117, 244, 255);
     font-style: italic;
+    font-family: 'Kavoon';
 }
 
 .mainContainer{
@@ -38,19 +51,22 @@
 .servItem1,.servItem2{
     padding: 0.5rem;
     width: 60rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+    text-align: center;
 }
 
 .item1Header{
     display: flex;
     justify-content: center;
-    font-family: 'Kavoon';
     font-size: 2rem;
+    font-weight:bold
 }
 
 .smartContainer{
     display: flex;
     justify-content: space-between;
-    height: 15rem;
+    height: 18rem;
     width: 50rem;
 }
 
@@ -67,7 +83,7 @@
 }
 
 .smart:hover{
-    height: 12rem;
+    height: 13rem;
 }
 
 .smartItem1,.smartItem2{
@@ -96,6 +112,8 @@
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
 }
 
 .nameContainer{
@@ -121,8 +139,9 @@
     border: solid black 1px;
     border-radius: 1rem;
     width: 40rem;
-    height: 18rem;
+    height: 17rem;
     overflow: overlay;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* width */
@@ -144,7 +163,10 @@
 .goalItem{
     display: flex;
     flex-wrap: wrap;
+    gap: 0.5rem;
     border: solid black 1px;
+    border-radius: 0.3rem;
+    padding: 5px;
     margin: 5px;
     width: 30rem;
     align-items: center;
@@ -152,16 +174,9 @@
     overflow-wrap: anywhere;
 }
 
-.editbtn{
-    margin-inline-start: 2rem;
-}
-
-.deletebtn{
-    margin-inline-start: 2rem;
-}
-
-.updatebtn{
-    margin-inline-start: 2rem;
+.editInput{
+    width: 29rem;
+    margin: 5px;
 }
 
 .userinputContainers{
@@ -170,6 +185,10 @@
 
 .goalinputContainer{
     width: 30rem;
+}
+
+.goalpostbtn,.editbtn,.deletebtn,.updatebtn:hover{
+    cursor: pointer;
 }
 
 .footerContainer{
@@ -186,14 +205,20 @@
     width: 70rem;
     padding: 0.5rem;
     justify-content: space-evenly;
+    
 }
 
 .footerTitle{
-    font-family: 'Kavoon';
-    font-size: 1rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.footerTitle:hover{
+    cursor: pointer;
 }
 
 .footerItem{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: center;
     width: 20rem;
 }

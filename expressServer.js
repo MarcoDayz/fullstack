@@ -1,10 +1,13 @@
-import express, { response } from "express";
+//import necessary packages to build express API and PSQL DB
+import express from "express";
 const app = express();
 import pkg from "pg";
 const {Pool} = pkg;
 
+//create port
 const port = 4000;
 
+//create pool to connect with psql db
 const pool = new Pool({
     user:'markdays',
     password:'',
@@ -13,8 +16,11 @@ const pool = new Pool({
     database:'goals_db'
 });
 
+
+//express middleware func to render specific root directory
 app.use(express.static('public'));
 
+//express middleware to parse incoming JSON requests
 app.use(express.json())
 
 //read all goals
